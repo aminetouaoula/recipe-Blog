@@ -1,0 +1,12 @@
+require('dotenv').config()
+const PORT = process.env.PORT || 3500
+const express = require('express')
+const app = express()
+const express_ejs_Layout = require('express-ejs-layouts')
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+app.use(express.static('./public'))
+app.use(express_ejs_Layout)
+app.use(require('./server/routes/routes'))
+app.set("layouts", "./layouts/main")
+app.listen(PORT, () => console.log("start listening"))
